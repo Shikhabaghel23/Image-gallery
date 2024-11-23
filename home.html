@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <!-- <link rel="stylesheet" href="copy.css"> -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.gallery-container {
+    width: 94%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item {
+    flex-basis: 32%;
+    margin: 6px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Lightbox Styles */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 60%;
+    max-height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    border: 4px solid #fff;
+}
+
+.lightbox-prev,
+.lightbox-next,
+.lightbox-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.lightbox-prev {
+    left: -50px;
+}
+
+.lightbox-next {
+    right: -50px;
+}
+
+.lightbox-close {
+    top: -50px;
+    right: 0;
+    transform: translate(0, -50%);
+}
+
+.img-btn {
+    height: 70px;
+    width: 150px;
+    color: black;
+    font-size: 40px;
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: aqua;
+    /* display: flex; */
+    /* text-align: center; */
+    margin-left: 47%;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-btn:hover {
+    color: #fff;
+    background: #000;
+}
+
+.heading{
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .gallery-item {
+        flex-basis: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        flex-basis: 100%;
+    }
+}
+
+</style>
+<body>
+
+    <h1 class="heading">Image Gallery</h1>
+    <div class="gallery-container">
+        <!-- Add your images here -->
+        <div class="gallery-item" data-index="1"><img src="./images/girl.jpg"></div>
+        <div class="gallery-item" data-index="2"><img src="./images/girl2.jpg"></div>
+        <div class="gallery-item" data-index="3"><img src="./images/girl3.jpg"></div>
+        <div class="gallery-item" data-index="4"><img src="./images/image4.jpg"></div>
+        <div class="gallery-item" data-index="5"><img src="./images/phad2.jpg"></div>
+        <div class="gallery-item" data-index="6"><img src="./images/image5.jpg"></div>
+        <div class="gallery-item" data-index="7"><img src="./images/image2.jpg"></div>
+        <div class="gallery-item" data-index="8"><img src="./images/pahad8.jpg"></div>
+        <div class="gallery-item" data-index="9"><img src="./images/pahad5.jpg"></div>
+        <div class="gallery-item" data-index="10"><img src="./images/image10.jpg"></div>
+        <div class="gallery-item" data-index="11"><img src="./images/pahad7.jpg"></div>
+        <div class="gallery-item" data-index="12"><img src="./images/river9.jpg"></div>
+        <div class="gallery-item" data-index="13"><img src="./images/pahad.jpg"></div>
+        <div class="gallery-item" data-index="14"><img src="./images/girl7.jpg"></div>
+        <div class="gallery-item" data-index="15"><img src="./images/fall4.jpg"></div>
+        <div class="gallery-item" data-index="16"><img src="./images/pahad2.jpg"></div>
+        <div class="gallery-item" data-index="17"><img src="./images/rendom2.jpg"></div>
+        <div class="gallery-item" data-index="18"><img src="./images/fall.jpg"></div>
+        <div class="gallery-item" data-index="19"><img src="./flow6.jpg"></div>
+        <div class="gallery-item" data-index="20"><img src="./images/fall7.jpg"></div>
+        <div class="gallery-item" data-index="21"><img src="./images/rendom7.jpg"></div>
+        <div class="gallery-item" data-index="22"><img src="./flow8.jpg"></div>
+        <div class="gallery-item" data-index="23"><img src="./images/rendom.jpg"></div>
+        <div class="gallery-item" data-index="24"><img src="./images/flow7.jpg"></div>
+        
+    </div>
+
+    <a href="./index.html"><button class="img-btn">Next</button></a>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Lightbox Image">
+            <div class="lightbox-prev"><i class='bx bx-chevron-left'></i></div>
+            <div class="lightbox-next"><i class='bx bx-chevron-right'></i></div>
+            <div class="lightbox-close"><i class='bx bx-x'></i></div>
+            
+        </div>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+
+<script>
+const galleryItems = document.querySelectorAll(".gallery-item img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const prevButton = document.querySelector(".lightbox-prev");
+const nextButton = document.querySelector(".lightbox-next");
+const closeButton = document.querySelector(".lightbox-close");
+
+let currentIndex = 0;
+
+// Show Lightbox
+function showLightbox(index) {
+    currentIndex = index;
+    const imgSrc = galleryItems[currentIndex].src;
+    lightboxImg.src = imgSrc;
+    lightbox.style.display = "flex";
+}
+
+// Navigate Images
+function navigateLightbox(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = galleryItems.length - 1;
+    if (currentIndex >= galleryItems.length) currentIndex = 0;
+    showLightbox(currentIndex);
+}
+
+// Close Lightbox
+function closeLightbox() {
+    lightbox.style.display = "none";
+}
+
+// Event Listeners
+galleryItems.forEach((item, index) => {
+    item.addEventListener("click", () => showLightbox(index));
+});
+
+prevButton.addEventListener("click", () => navigateLightbox(-1));
+nextButton.addEventListener("click", () => navigateLightbox(1));
+closeButton.addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+});
+
+    </script>
+</body>
+</html>

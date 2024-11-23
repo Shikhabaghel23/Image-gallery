@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lightbox.css">
+    <link rel="stylesheet" href="chat.html">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="img-gallery" id="gallery-item">
+
+            <div class="gallery-item">
+                <a href="./images/girl.jpg" data-lightbox="models" data-title="Caption1">
+                    <img src="./images/girl.jpg">
+                    </a>
+            </div>
+
+            <a href="./images/girl2.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/girl2.jpg">
+            </a>
+
+            <a href="./images/girl3.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/girl3.jpg">
+                </a>
+
+            <a href="./images/image4.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/image4.jpg">
+                </a>
+
+            <a href="./images/phad2.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/phad2.jpg">
+                </a>
+
+            <a href="./images/image5.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/image5.jpg">
+            </a>
+
+            <a href="./images/image2.jpg" data-lightbox="models" data-title="Caption1">  
+                <img src="./images/image2.jpg">
+                </a>
+
+            <a href="./images/pahad8.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/pahad8.jpg">
+            </a>
+
+            <a href="./images/pahad5.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/pahad5.jpg">
+            </a>
+
+            <a href="./images/image10.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/image10.jpg">
+                </a>
+
+            <a href="./images/pahad7.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/pahad7.jpg">
+                </a>
+
+            <a href="./images/river9.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/river9.jpg">
+                </a>
+
+            <a href="./images/pahad.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/pahad.jpg">
+            </a>
+
+            <a href="./images/girl7.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/girl7.jpg">
+            </a>
+
+            <a href="./images/fall4.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/fall4.jpg">
+            </a>  
+            
+            <a href="./images/pahad2.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/pahad2.jpg">
+            </a>
+
+            <a href="./images/rendom2.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/rendom2.jpg">
+            </a>
+
+            <a href="./images/fall.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/fall.jpg">
+            </a>
+
+            <a href="./flow6.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./flow6.jpg">
+            </a>
+       
+            <a href="./images/fall7.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/fall7.jpg">
+            </a>
+
+            <a href="./images/rendom7.jpg" data-lightbox="models" data-title="Caption1">
+                <img src="./images/rendom7.jpg">
+                </a>
+
+            <a href="./flow8.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./flow8.jpg">
+            </a>
+            
+            <a href="./images/rendom.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/rendom.jpg">
+            </a>
+
+            <a href="./images/flow7.jpg" data-lightbox="models" data-title="Caption1">
+            <img src="./images/flow7.jpg">
+            </a>
+
+        </div>
+    </div>
+
+    <a href="./home.html"><button class="img2-btn">Back</button></a>
+
+    <!-- <script src="lightbox-plus-jquery.main.js"></script> -->
+
+    <script>
+
+        const galleryItem = document.getElementsByClassName("gallery-item");
+        // create element for lightbox
+        const lightBoxContainer = document.createElement("div");
+        // for basic area
+        const lightBoxContent = document.createElement("div");
+        // for emage
+        const lightBoxImg = document.createElement("div");
+        // for prev button to change images
+        const lightBoxPrev = document.createElement("div");
+        // for next button
+        const lightBoxNext = document.createElement("div");
+
+        // create classlist
+        lightBoxContainer.classList.add('lightbox');
+        lightBoxContainer.classList.add('lightbox-content');
+        lightBoxContainer.classList.add("fa","fa-angle-left","lightbox-prev");
+        lightBoxContainer.classList.add("fa","fa-angle-right","lightbox-next");
+
+        lightBoxContainer.appendChild(lightBoxContent);
+        lightBoxContainer.appendChild(lightBoxImg);
+        lightBoxContainer.appendChild(lightBoxPrev);
+        lightBoxContainer.appendChild(lightBoxNext);
+        document.body.appendChild(lightBoxContainer);
+
+        let index = i;
+        // create function 
+
+        function showLightBox(n) {
+            if (n > galleryItem.length) {
+                index = i;
+            } else if (n < 1){
+                index = galleryItem.length;
+            }
+            let imageLocation = galleryItem[index-1].children[0].getAttribute("src");
+            lightBoxImg.setAttribute("src", imageLocation);
+        }
+
+        function currentImage(){
+            lightBoxContainer.style.display="block";
+
+            let imageIndex = parseInt(this.getAttribjute("data-index"));
+            showLightBox(index = imageIndex);
+        }
+
+        for (let i = 0; i<galleryItem.length; i++){
+            galleryItem[i].addEventListener("click", currentImage);
+        }
+
+        function sliderImage(n){
+            showLightBox(index += n);
+        }
+
+        function  prevImage(){
+            sliderImage(-1);
+        }
+
+        function nextImage(){
+            sliderImage(1);
+        }
+
+        lightBoxPrev.addEventListener("click", prevImage);
+        lightBoxNext.addEventListener("click",nextImage);
+
+        // close lightbox
+
+        function closeLightBox(){
+            if(this === event.target){
+                lightBoxContainer.style.display = "none";
+            }
+        }
+
+    </script>
+</body>
+</html>

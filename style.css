@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 8%; 
+}
+
+.img-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+
+}
+
+.img-gallery img {
+    width: 100%;
+    cursor: pointer;
+    transition: 0.4s;
+    /* opacity: 0.85;  blurr bg */
+    opacity: 0.70;
+}
+
+.img-gallery img:hover {
+    opacity: 1;
+}
+
+.img-gallery img:hover {
+    transform: scale(0.8) rotate(-15deg);
+    border-radius: 20px;
+    box-shadow: 0 32px 75px rgba(68,77,136,0.2);
+}
+
+.lightbox{
+    position: fixed;
+    display: none;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    left: 0;
+    top: 0;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 65%;
+    height: 59%;
+    margin: 5% auto;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: 100%;
+    border: 6px solid #fff;
+    object-fit: cover;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 9px;
+    top: 45%;
+    cursor: pointer;
+}
+
+.lightbox-prev {
+    left: 0;
+}
+
+.lightbox-next {
+    right: 0;
+}
+
+.img2-btn {
+    height: 70px;
+    width: 150px;
+    color: black;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: aqua;
+    /* display: flex; */
+    /* text-align: center; */
+    margin-left: 47%;
+    align-items: center;
+    justify-content: center;
+}
+
+.img2-btn:hover {
+    color: #fff;
+    background: #000;
+}
+
+@media(max-width: 767px){
+    .gallery-container{
+        width: 100%;
+    }
+    .gallery.item {
+        flex-basis: 49.80%;
+        margin-bottom: 3px;
+    }
+    .lightbox-content{
+        width: 80%;
+        height: 60%;
+        margin: 15% auto;
+    }
+}
+@media (max-width: 480px){
+    .gallery.item{
+        flex-basis: 100%;
+        margin-bottom: 1px;
+    }
+    .lightbox-content{
+        width: 90%;
+        margin: 20px auto;
+    }
+}
+
